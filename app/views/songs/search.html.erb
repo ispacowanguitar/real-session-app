@@ -1,0 +1,19 @@
+<h1>Search for songs</h1>
+
+<%= form_tag '/songs/search', method: :get do %>
+  <p>
+    <%= text_field_tag :search, "search box" %>
+    <%= button_tag "Search" %>
+  </p>
+<% end %>
+
+<%= form_tag '/songs', method: :post do %>
+  <%= button_tag "Add to repetoire" %>
+  <br></br>
+  <% @songs.each do |song| %>
+  <div>
+    <%= check_box_tag "songs[]", song.id, checked = false, {} %><strong>Title:</strong> <%= song.title %> ... <strong>Style: </strong> <%= song.style %> ... <strong>Composer: </strong> <%= song.composer %>
+    </div><br>
+  <% end %>
+<% end %>
+

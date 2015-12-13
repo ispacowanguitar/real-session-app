@@ -1,0 +1,9 @@
+<h1>You have <%= @songs.count %> songs in your repetoire</h1>
+
+<% @songs.each do |song|%>
+  <%= song.title %><br>
+<% end %>
+
+<%= link_to "Search for more songs", '/songs/search' %>
+
+<%= link_to "Sign out", "/users/sign_out", method: :delete %>

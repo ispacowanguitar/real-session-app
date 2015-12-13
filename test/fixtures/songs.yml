@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  style: MyText
+  composer: MyText
+  tempo: 1
+
+two:
+  title: MyText
+  style: MyText
+  composer: MyText
+  tempo: 1

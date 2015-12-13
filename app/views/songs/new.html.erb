@@ -1,0 +1,20 @@
+<h1>add songs to your repetoire</h1>
+
+<%= form_tag '/songs', method: :post do %>
+<div>
+  <%= text_field_tag :title, "type the title" %>
+</div>
+<div>
+  <%= text_field_tag :style, "type the style" %>
+</div>
+<div>
+  <%= text_field_tag :composer, "type the composer" %>
+</div>
+<div>
+  <%= text_field_tag :tempo, "type the tempo" %><br><br>
+</div>
+<div>
+  <%= button_tag "Create the Song" %>
+</div>
+<% end %>
+
