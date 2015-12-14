@@ -1,0 +1,21 @@
+<h1>Search for bandmates</h1>
+
+<%= form_tag '/sessions/search_users', method: :get do %>
+  <p>
+    <%= text_field_tag :search, "search box" %>
+    <%= button_tag "Search" %>
+  </p>
+<% end %>
+
+<% if @users %>
+  <%= form_tag '/sessions/create_session', method: :post do %>
+    <%= button_tag "Add to Jam Session" %>
+    <br></br>
+    <% @users.each do |user| %>
+      <div>
+      <%= check_box_tag "users[]", user.id, checked = false, {} %><strong>User: <%= user.email %></strong>
+      </div><br>
+    <% end %>
+  <% end %>
+<% end %>
+

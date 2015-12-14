@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   post '/songs' => 'songs#create'
   get '/songs/:id' => 'songs#show'
   delete '/songs/:id' => 'songs#destroy'
+
+  get '/sessions/search_users' => 'sessions#search_users'
+  post '/sessions/create_session' => 'sessions#create_session'
 end
