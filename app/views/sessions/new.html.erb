@@ -1,0 +1,18 @@
+<%= form_tag '/sessions/create', method: :post do %>
+  <div>
+    <%= label_tag :location, 'Location of session' %>
+    <%= text_field_tag "location", "Enter location here" %>
+  </div>
+  <div>
+    <%= label_tag :description, 'Description of session' %>
+    <%= text_field_tag "description", "description" %>
+  </div>
+  <div>
+    <%= label_tag :datetime, 'Enter the date of the session' %>
+    <%= datetime_local_field :session_datetime, "datetime" %>
+  </div>
+  <div>
+    <%= label_tag :button, 'Click the button to proceed' %>
+    <%= button_tag "Find Bandmates" %>
+  </div>
+<% end %>

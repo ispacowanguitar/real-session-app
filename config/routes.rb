@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/songs/:id' => 'songs#show'
   delete '/songs/:id' => 'songs#destroy'
 
+  get '/sessions/new' => 'sessions#new'
+  post '/sessions/create' => 'sessions#create'
   get '/sessions/search_users' => 'sessions#search_users'
-  post '/sessions/create_session' => 'sessions#create_session'
+  post '/sessions/add' => 'sessions#add_members_to_session'
 end
