@@ -28,10 +28,12 @@ class SessionsController < ApplicationController
     @session = Session.find(session_id)
     @member_ids = params[:users]
     @member_ids.each do |member_id|
-    UserSession.create(
-      user_id: member_id,
-      session_id: session_id
-      )
+      unless UserSession.find_by(user_id: member_id, session_id: session_id)
+      UserSession.create(
+        user_id: member_id,
+        session_id: session_id
+        )
+      end
     end
     @band_members = Session.find(params[:id]).users
 
