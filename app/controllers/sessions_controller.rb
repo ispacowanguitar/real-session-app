@@ -8,22 +8,34 @@ class SessionsController < ApplicationController
 
   def create
     datetime_hash = params[:session_datetime]
-    Session.create(
+    session = Session.create(
       location: params[:location],
       description: params[:description],
       time: datetime_hash[:datetime]
       )
+    redirect_to "/sessions/#{session.id}/search_users"
   end
 
   def search_users
+    @session = Session.find(params[:id])
     if params[:search]
     @users = User.where('email LIKE?', "%#{params[:search]}%")
     end
   end
 
   def add_members_to_session
-    @members = params[:users]
-    render '/sessions/search_users'
+    session_id = params[:id]
+    @session = Session.find(session_id)
+    @member_ids = params[:users]
+    @member_ids.each do |member_id|
+    UserSession.create(
+      user_id: member_id,
+      session_id: session_id
+      )
+    end
+    @band_members = Session.find(params[:id]).users
+
+    render 'search_users'
   end
 
 end

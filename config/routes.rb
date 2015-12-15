@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   get '/sessions/new' => 'sessions#new'
   post '/sessions/create' => 'sessions#create'
-  get '/sessions/search_users' => 'sessions#search_users'
-  post '/sessions/add' => 'sessions#add_members_to_session'
+  get '/sessions/:id/search_users' => 'sessions#search_users'
+  post '/sessions/:id/add' => 'sessions#add_members_to_session'
 end
