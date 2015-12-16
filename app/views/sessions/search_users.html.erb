@@ -13,7 +13,7 @@
     <br></br>
     <% @users.each do |user| %>
       <div>
-      <%= check_box_tag "users[]", user.id, checked = false, {} %><strong>User: <%= user.email %></strong>
+      <%= check_box_tag "users[]", user.id, checked = false, {} %><strong> <%= user.first_name %> <%= user.last_name %></strong>
       </div><br>
     <% end %>
   <% end %>
@@ -22,9 +22,11 @@
 <% if @band_members %>
   <h3>The Band So Far: </h3>
   <% @band_members.each do |band_member| %>
-    <%= band_member.email %><br>
+    <%= band_member.first_name %> <%= band_member.last_name %><br>
   <% end %> 
 <% end %>
+<br>
+<%= link_to "Proceed to Session", "play" %>
 
 
 
