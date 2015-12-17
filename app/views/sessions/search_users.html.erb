@@ -8,8 +8,8 @@
 <% end %>
 
 <% if @users %>
-  <%= form_tag "/sessions/#{@session.id}/add", method: :post do %>
-    <%= button_tag "Add to Jam Session" %>
+  <%= form_tag "/sessions/#{@session.id}/invite", method: :post do %>
+    <%= button_tag "Invite to Jam Session" %>
     <br></br>
     <% @users.each do |user| %>
       <div>
@@ -19,14 +19,14 @@
   <% end %>
 <% end %>
 
-<% if @band_members %>
+<% if @invited_users %>
   <h3>The Band So Far: </h3>
-  <% @band_members.each do |band_member| %>
+  <% @invited_users.each do |band_member| %>
     <%= band_member.first_name %> <%= band_member.last_name %><br>
   <% end %> 
 <% end %>
 <br>
-<%= link_to "Proceed to Session", "play" %>
+<%= link_to "send invitations", "/sessions/#{@session.id}/send_invitations", method: :post %>
 
 
 

@@ -22,31 +22,74 @@ class SessionsController < ApplicationController
     end
   end
 
-  def add_members_to_session
-    session_id = params[:id]
-    @session = Session.find(session_id)
-    if params[:users]
-      @member_ids = params[:users]
-      @member_ids << current_user.id
-      @member_ids.each do |member_id|
-        unless UserSession.find_by(user_id: member_id, session_id: session_id)
-          if current_user.id == member_id
-            admin = true
-          else 
-            admin = false
-          end
-        UserSession.create(
-          user_id: member_id,
-          session_id: session_id,
-          admin: admin
-          )
-        end
+  def invite
+    @invited_users = []
+    @session = Session.find(params[:id])
+
+    params[:users].each do |member_id|
+      unless Invitation.find_by(session_id: params[:id], sender_id: current_user.id, user_id: member_id)
+      Invitation.create(
+        session_id: params[:id],
+        sender_id: current_user.id,
+        user_id: member_id,
+        status: "unsent"
+        )
+      end
+
+
+
+      invitations = []
+      invitations = Invitation.where("session_id = #{params[:id]}")
+      invitations.each do |invitation|
+        @invited_users << User.find(invitation.user_id)
       end
     end
-      @band_members = Session.find(params[:id]).users
 
-    render 'search_users'
+    UserSession.create(
+      user_id: current_user.id,
+      session_id: params[:id],
+      admin: true
+      )
+
+    render "search_users"
   end
+
+  def send_invitations
+    session_id = params[:id]
+    invitations = []
+    invitations = Invitation.where("session_id = #{params[:id]}")
+
+    invitations.each do |invitation|
+      invitation.update(status: 'sent')
+    end
+    redirect_to "/sessions/#{params[:id]}/play"
+  end
+
+  # def add_members_to_session
+  #   session_id = params[:id]
+  #   @session = Session.find(session_id)
+  #   if params[:users]
+  #     @member_ids = params[:users]
+  #     @member_ids << current_user.id
+  #     @member_ids.each do |member_id|
+  #       unless UserSession.find_by(user_id: member_id, session_id: session_id)
+  #         if current_user.id == member_id
+  #           admin = true
+  #         else 
+  #           admin = false
+  #         end
+  #       UserSession.create(
+  #         user_id: member_id,
+  #         session_id: session_id,
+  #         admin: admin
+  #         )
+  #       end
+  #     end
+  #   end
+  #     @band_members = Session.find(params[:id]).users
+
+  #   render 'search_users'
+  # end
 
   def play
     current_session = Session.find(params[:id])

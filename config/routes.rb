@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/sessions/new' => 'sessions#new'
   post '/sessions/create' => 'sessions#create'
   get '/sessions/:id/search_users' => 'sessions#search_users'
-  post '/sessions/:id/add' => 'sessions#add_members_to_session'
+  post '/sessions/:id/invite' => 'sessions#invite'
+  post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
   get '/sessions/:id/play' => 'sessions#play'
 end

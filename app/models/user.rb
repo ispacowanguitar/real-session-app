@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   has_many :user_sessions
   has_many :sessions, through: :user_sessions
 
+  has_many :invitations
 end
