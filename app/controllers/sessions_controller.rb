@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
         session_id: params[:id],
         sender_id: current_user.id,
         user_id: member_id,
-        status: "unsent"
+        status_id: 1
         )
       end
 
@@ -60,7 +60,7 @@ class SessionsController < ApplicationController
     invitations = Invitation.where("session_id = #{params[:id]}")
 
     invitations.each do |invitation|
-      invitation.update(status: 'sent')
+      invitation.update(status_id: 2)
     end
     redirect_to "/sessions/#{params[:id]}/play"
   end

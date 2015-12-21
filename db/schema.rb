@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217014257) do
+ActiveRecord::Schema.define(version: 20151217233148) do
 
   create_table "invitations", force: :cascade do |t|
     t.integer  "session_id", limit: 4
     t.integer  "sender_id",  limit: 4
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "status",     limit: 255
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "status_id",  limit: 4
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(version: 20151217014257) do
     t.integer  "tempo",      limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "user_sessions", force: :cascade do |t|
