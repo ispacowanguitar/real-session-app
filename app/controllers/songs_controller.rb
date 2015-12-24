@@ -10,7 +10,13 @@ class SongsController < ApplicationController
   end
 
   def search
+
     @songs = Song.where('title LIKE?', "%#{params[:search]}%")
+
+    if params[:search] == nil
+      @songs = []
+    end
+
   end
 
   def create

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   post '/sessions/:id/invite' => 'sessions#invite'
   post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
   get '/sessions/:id/play' => 'sessions#play'
+  get '/sessions/invitations' => 'sessions#invitations'
 end

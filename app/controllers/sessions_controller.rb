@@ -65,31 +65,9 @@ class SessionsController < ApplicationController
     redirect_to "/sessions/#{params[:id]}/play"
   end
 
-  # def add_members_to_session
-  #   session_id = params[:id]
-  #   @session = Session.find(session_id)
-  #   if params[:users]
-  #     @member_ids = params[:users]
-  #     @member_ids << current_user.id
-  #     @member_ids.each do |member_id|
-  #       unless UserSession.find_by(user_id: member_id, session_id: session_id)
-  #         if current_user.id == member_id
-  #           admin = true
-  #         else 
-  #           admin = false
-  #         end
-  #       UserSession.create(
-  #         user_id: member_id,
-  #         session_id: session_id,
-  #         admin: admin
-  #         )
-  #       end
-  #     end
-  #   end
-  #     @band_members = Session.find(params[:id]).users
-
-  #   render 'search_users'
-  # end
+  def invitations
+    @invitations = current_user.invitations.where("status_id = 2")
+  end
 
   def play
     current_session = Session.find(params[:id])
