@@ -9,5 +9,6 @@
       <li><%= user.first_name %> <%= user.last_name %></li>
     <% end %>
   </ul>
+  <%= link_to "Generate songs", "sessions/#{session.id}/play" %>
   <hr>
 <% end %>
