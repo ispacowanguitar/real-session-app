@@ -4,4 +4,6 @@ class Session < ActiveRecord::Base
   
   has_many :song_sessions
   has_many :songs, through: :song_sessions
+
+  has_many :invitations
 end

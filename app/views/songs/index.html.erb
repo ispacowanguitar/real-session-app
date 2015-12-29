@@ -3,7 +3,7 @@
   
   <div class="row">
     <div class="col-lg-6">
-      <h3>You have <%= @songs.count %> songs in your repetoire </h3>
+      <h3>Hi <%= current_user.first_name %>, you have <%= @songs.count %> songs in your repetoire </h3>
     </div>
     <div class="col-lg-4">
       <%= link_to "Search for more songs", '/songs/search' %>

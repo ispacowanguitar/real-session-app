@@ -12,14 +12,7 @@ class SessionsController < ApplicationController
       description: params[:description],
       time: datetime_hash[:datetime]
       )
-    redirect_to "/sessions/#{session.id}/search_users"
-  end
-
-  def search_users
-    @session = Session.find(params[:id])
-    if params[:search]
-    @users = User.where('email LIKE? OR first_name LIKE? OR last_name LIKE?', "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
-    end
+    redirect_to "/invitations/#{session.id}/search_users"
   end
 
   def invite
@@ -36,8 +29,6 @@ class SessionsController < ApplicationController
         )
       end
 
-
-
       invitations = []
       invitations = Invitation.where("session_id = #{params[:id]}")
       invitations.each do |invitation|
@@ -51,7 +42,7 @@ class SessionsController < ApplicationController
       admin: true
       )
 
-    render "search_users"
+    render "invitations/#{params[:id]}/search_users"
   end
 
   def send_invitations
@@ -67,6 +58,10 @@ class SessionsController < ApplicationController
 
   def invitations
     @invitations = current_user.invitations.where("status_id = 2")
+  end
+
+  def index
+    @sessions = current_user.sessions.all
   end
 
   def play

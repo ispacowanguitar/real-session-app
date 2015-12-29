@@ -36,13 +36,17 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
-                    <li class="selected"><a href="index.html"><i class="fa fa-bullseye"></i> Songs</a></li>
-                    <li><a href="portfolio.html"><i class="fa fa-tasks"></i> Band Mates</a></li>
-                    <li><a href="/sessions/new"><i class="fa fa-globe"></i> Sessions</a></li>
-                    <li><a href="timeline.html"><i class="fa fa-font"></i> Calendar</a></li>
+                    <li class="selected"><a href="/songs"><i class="fa fa-bullseye"></i> Songs</a></li>
+                    <li><a href="/"><i class="fa fa-tasks"></i> Band Mates</a></li>
+                    <li><a href="/sessions/new">New Session</a></li>
+                    <li><a href="/sessions"><i class="fa fa-globe"></i> Calendar</a></li>
                     <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
                     <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li>
                 </ul>
+
+
+                    <% unless !current_user %>
+                
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown Invitations-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Invitations <span class="badge"><%=current_user.invitations.where("status_id = 2").count %></span> <b class="caret"></b></a>
@@ -59,11 +63,10 @@
                                 </a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/sessions/invitations">View invitations <span class="badge"><%=current_user.invitations.where("status_id = 2").count %></span></a></li>
+                            <li><a href="/invitations">View invitations <span class="badge"><%=current_user.invitations.where("status_id = 2").count %></span></a></li>
                         </ul>
                     </li>
 
-                    <% unless !current_user %>
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.first_name if current_user%><b class="caret"></b></a>
                         <ul class="dropdown-menu">
