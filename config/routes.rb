@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   get '/sessions/new' => 'sessions#new'
   post '/sessions/create' => 'sessions#create'
   post '/sessions/:id/invite' => 'sessions#invite'
-  post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
+  # post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
   get '/sessions/:id/play' => 'sessions#play'
-  get '/sessions/invitations' => 'sessions#invitations'
+  # get '/sessions/invitations' => 'sessions#invitations'
 
   get '/invitations' => 'invitations#index'
   get '/invitations/:id/search_users' => 'invitations#search_users'

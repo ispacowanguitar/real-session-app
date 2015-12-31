@@ -1,5 +1,8 @@
 class InvitationsController < ApplicationController
 
+    before_action :authenticate_user!
+
+
   def search_users
     @session = Session.find(params[:id])
     if params[:search]
@@ -15,12 +18,12 @@ class InvitationsController < ApplicationController
 
     params[:users].each do |member_id|
       unless Invitation.find_by(session_id: params[:id], sender_id: current_user.id, user_id: member_id) || (member_id.to_i == current_user.id)
-      Invitation.create(
-        session_id: params[:id],
-        sender_id: current_user.id,
-        user_id: member_id,
-        status_id: 1
-        )
+        Invitation.create(
+          session_id: params[:id],
+          sender_id: current_user.id,
+          user_id: member_id,
+          status_id: 1
+          )
       end
 
 
@@ -31,18 +34,18 @@ class InvitationsController < ApplicationController
         @invited_users << User.find(invitation.user_id)
       end
     end
-
-    UserSession.create(
-      user_id: current_user.id,
-      session_id: params[:id],
-      admin: true
-      )
+    
 
     render "search_users"
   end
 
   def send_invitations
     session_id = params[:id]
+    UserSession.create(
+      user_id: current_user.id,
+      session_id: session_id,
+      admin: true
+      )
     invitations = []
     invitations = Invitation.where("session_id = #{params[:id]}")
 
