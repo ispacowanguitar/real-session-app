@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   include SessionsHelper
 
   def new
+    @sessions = Session.all
   end
 
   def create
@@ -24,7 +25,7 @@ class SessionsController < ApplicationController
   def play
     current_session = Session.find(params[:id])
     @available_songs = all_common_songs(current_session)
-    
+
   end
 
 end

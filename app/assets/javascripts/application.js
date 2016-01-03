@@ -16,3 +16,6 @@
 //= require theme/Theme-DarkAdmin:bootstrap:js:bootstrap
 //= require theme/Theme-DarkAdmin:js:jquery-1.10.2.min
 //= require_tree .
+//= require moment
+//= require bootstrap
+//= require bootstrap-datetimepicker
