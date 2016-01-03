@@ -10,10 +10,17 @@ Rails.application.routes.draw do
   get '/songs/:id' => 'songs#show'
   delete '/songs/:id' => 'songs#destroy'
 
+  get '/sessions' => 'sessions#index'
   get '/sessions/new' => 'sessions#new'
   post '/sessions/create' => 'sessions#create'
-  get '/sessions/:id/search_users' => 'sessions#search_users'
   post '/sessions/:id/invite' => 'sessions#invite'
-  post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
+  # post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
   get '/sessions/:id/play' => 'sessions#play'
+  # get '/sessions/invitations' => 'sessions#invitations'
+
+  get '/invitations' => 'invitations#index'
+  get '/invitations/:id/search_users' => 'invitations#search_users'
+  post '/invitations/:id' => 'invitations#create'
+  post '/invitations/:id/send' => 'invitations#send_invitations'
+  post '/invitations/:invitation_id/:response/response' => 'invitations#reply'
 end

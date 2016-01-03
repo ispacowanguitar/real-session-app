@@ -1,6 +1,6 @@
 <h1>Search for bandmates to play with at <%= @session.location %></h1>
 
-<%= form_tag "/sessions/#{@session.id}/search_users", method: :get do %>
+<%= form_tag "/invitations/#{@session.id}/search_users", method: :get do %>
   <p>
     <%= text_field_tag :search, "search box" %>
     <%= button_tag "Search" %>
@@ -8,7 +8,7 @@
 <% end %>
 
 <% if @users %>
-  <%= form_tag "/sessions/#{@session.id}/invite", method: :post do %>
+  <%= form_tag "/invitations/#{@session.id}", method: :post do %>
     <%= button_tag "Invite to Jam Session" %>
     <br></br>
     <% @users.each do |user| %>
@@ -26,7 +26,4 @@
   <% end %> 
 <% end %>
 <br>
-<%= link_to "send invitations", "/sessions/#{@session.id}/send_invitations", method: :post %>
-
-
-
+<%= link_to "send invitations", "/invitations/#{@session.id}/send", method: :post %>
