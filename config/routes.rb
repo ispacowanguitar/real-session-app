@@ -23,4 +23,9 @@ Rails.application.routes.draw do
   post '/invitations/:id' => 'invitations#create'
   post '/invitations/:id/send' => 'invitations#send_invitations'
   post '/invitations/:invitation_id/:response/response' => 'invitations#reply'
+
+  namespace :api do
+    get '/songs' => 'songs#get_songs'
+    get '/songs/:style' => 'songs#get_styles'
+  end
 end
