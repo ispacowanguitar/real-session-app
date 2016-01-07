@@ -24,7 +24,12 @@ class SessionsController < ApplicationController
 
   def play
     current_session = Session.find(params[:id])
+    @session_id = current_session.id
     @available_songs = all_common_songs(current_session)
+    @styles = Song.sort_by_style(@available_songs)
+    if params[:style]
+      @available_songs = Song.sort_by_style(@available_songs)[params[:style]]
+    end 
 
   end
 

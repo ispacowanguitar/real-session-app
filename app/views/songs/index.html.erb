@@ -1,18 +1,38 @@
 
 <div class="container">
+  <div ng-app="app">
+  <div ng-controller="songsCtrl" ng-init="setup()">
+
+  <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style<span class="caret"></span></button>
+  <ul class="dropdown-menu">
+
+      <li><a href="/songs">All Songs </a></li>
+     <% @styles.each_key do |key| %>
+      <li><a href="/songs/sort/<%= key %>"><%= key %> </a></li>
+     <% end %>
+
+  </ul>
+</div>
   
   <div class="row">
     <div class="col-lg-6">
-      <h3>Hi <%= current_user.first_name %>, you have <%= @songs.count %> songs in your repetoire </h3>
+      <h3>Hi <%= current_user.first_name %>, you have <%= @songs.count %> <%=  %> songs in your repetoire </h3>
     </div>
     <div class="col-lg-4">
       <%= link_to "Search for more songs", '/songs/search' %>
     </div>
   </div>
 
+  <div ng-repeat="song in songs">
+    {{song.title}}
+  </div>
   <% @songs.each do |song|%>
     <%= song.title %><br>
   <% end %>
 
+ 
+
+  </div>
 </div>
 

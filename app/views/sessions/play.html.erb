@@ -1,4 +1,19 @@
-<h2>Songs: </h2>
-<% @available_songs.each do |song| %>
-  <%= song.title %><br>
-<% end %>
+<div class="container">
+
+  <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style<span class="caret"></span></button>
+  <ul class="dropdown-menu">
+
+      <li><a href="/sessions/<%= @session_id %>/play">All Songs </a></li>
+     <% @styles.each_key do |key| %>
+      <li><a href="/sessions/<%= @session_id %>/play/<%= key %>"><%= key %> </a></li>
+     <% end %>
+     </ul>
+     </div>
+
+  <h2>Songs: </h2>
+  <% @available_songs.each do |song| %>
+    <%= song.title %><br>
+  <% end %>
+
+</div>

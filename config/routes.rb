@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   get '/' => 'songs#index'
   get '/songs' => 'songs#index'
+  get '/songs/sort/:style' => 'songs#index'
   get '/songs/search' => 'songs#search'
   post '/songs' => 'songs#user_songs_add'
   get '/songs/new' => 'songs#new'
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   post '/sessions/:id/invite' => 'sessions#invite'
   # post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
   get '/sessions/:id/play' => 'sessions#play'
+  get '/sessions/:id/play/:style' => 'sessions#play'
   # get '/sessions/invitations' => 'sessions#invitations'
 
   get '/invitations' => 'invitations#index'

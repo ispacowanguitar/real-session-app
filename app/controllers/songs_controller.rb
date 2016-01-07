@@ -4,6 +4,10 @@ class SongsController < ApplicationController
 
   def index
     @songs = current_user.songs
+    @styles = Song.sort_by_style(current_user.songs)
+    if params[:style]
+      @songs = Song.sort_by_style(current_user.songs)[params[:style]]
+    end 
   end
 
   def new

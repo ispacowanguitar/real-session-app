@@ -7,6 +7,6 @@ class Song < ActiveRecord::Base
   has_many :sessions, through: :user_sessions
 
   def self.sort_by_style(songs_array)
-    return songs_array.group_by {|song| song.style }  
+    return songs_array.group_by {|song| song.style }
   end
 end

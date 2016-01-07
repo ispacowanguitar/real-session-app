@@ -15,5 +15,4 @@
  *= require theme/Theme-DarkAdmin:font-awesome:css:font-awesome
  *= require_tree .
  *= require_self
- *= require bootstrap-datetimepicker
  */
