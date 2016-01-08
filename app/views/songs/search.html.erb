@@ -10,10 +10,24 @@
 <%= form_tag '/songs', method: :post do %>
   <%= button_tag "Add to repetoire" %>
   <br></br>
+
+  <table class="table table-hover" width="100%">
+    <thead>
+      <tr style="color:red;">
+        <th width="30%">Title</th>
+        <th width="30%">Style</th>
+        <th width="30%">Composer</th>
+      </tr>
+    </thead>
   <% @songs.each do |song| %>
-  <div>
-    <%= check_box_tag "songs[]", song.id, checked = false, {} %><strong>Title:</strong> <%= song.title %> ... <strong>Style: </strong> <%= song.style %> ... <strong>Composer: </strong> <%= song.composer %>
-    </div><br>
+  <tbody>
+    <tr>
+      <td width="30%"><%= check_box_tag "songs[]", song.id, checked = false, {} %>  <%= song.title %></td>
+      <td width="30%"><%= song.style %></td>
+      <td width="30%"><%= song.composer %></td>
+    </tr>
+  </tbody>
   <% end %>
+  </table><br>
 <% end %>
 

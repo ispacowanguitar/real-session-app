@@ -1,12 +1,27 @@
 class Api::SongsController < ApplicationController
   
   def get_songs
-    render :json => Song.all
-  end
 
-  def get_styles
-      style_group = Song.sort_by_style(Song.all)[params[:style]]
-      render :json => style_group
+    if params[:user_id]
+      user_id = params[:user_id]
+      user = User.find(user_id)
+      songs = user.songs
+    else
+      songs = Song.all
+    end
+      
+    if params[:style]
+      songs = Song.sort_by_style(songs)[params[:style]]
+    end
+
+      render :json => songs
   end
   
+
+  
+  def find_user
+    render :json => current_user
+  end
+
+
 end

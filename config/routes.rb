@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     get '/songs' => 'songs#get_songs'
+    get '/songs/user/' => 'songs#user_songs'
     get '/songs/:style' => 'songs#get_styles'
+    get '/user_id' => 'songs#find_user'
   end
 end
