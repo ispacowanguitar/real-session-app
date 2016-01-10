@@ -1,18 +1,28 @@
 <div class="container" ng-controller="sessionsCtrl" ng-init="setup(<%= @session_id %>)">
 
-  <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style<span class="caret"></span></button>
-  <ul class="dropdown-menu">
-
-      <li><a href="/sessions/<%= @session_id %>/play">All Songs </a></li>
-     <% @styles.each_key do |key| %>
-      <li><a href="/sessions/<%= @session_id %>/play/<%= key %>"><%= key %> </a></li>
-     <% end %>
-     </ul>
-     </div>
+    <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><a ng-click="sortBy('all')">All Songs </a></li>
+       <% @styles.each_key do |key| %>
+        <li><a ng-click="sortBy('<%= key %>')"><%= key %></a></li>
+       <% end %>
+    </ul>
+    </div>
 
      <button ng-click="showCommonSongs()">Show Common songs</button>
      <button ng-click="showIndividualSongs()">Show All Users Songs</button>
+     <button ng-click="showRandomCommonSong()">Call a random tune!</button>
+
+     <br>
+     <br>
+     <br>
+     <div class="input-group">
+      <span class="input-group-btn">
+      </span>
+      <input ng-model="sortTitle" type="text" class="form-control" placeholder="Song Name filter">
+    </div><!-- /input-group -->
+    <br>
 
      <table ng-if="showCommon" class="table table-hover" width="100%">
     <thead>
@@ -33,12 +43,15 @@
 
      <div ng-if="showIndividual" ng-repeat="array in songs">
       <div class="col-lg-4">
-        <ul>
+        <ul class="list-group">
           <div ng-repeat="user in array">
-            <li> {{user.first_name}} {{user.last_name}} </li>
+            <h3 class="list-group-item"> {{user.first_name}} {{user.last_name}} </h3>
           </div>
-          <div ng-repeat="object in array.song_array">
-            <li> {{object.title}} </li>
+          <div ng-repeat="object in array.song_array | orderBy:'title' | filter: {title: sortTitle}">
+            <li ng-if="isCommon(object)" style="color:red;" class="list-group-item"> {{object.title}} {{object.isInCommon}} </li>
+          </div>
+          <div ng-repeat="object in array.song_array | orderBy:'title' | filter: {title: sortTitle}">
+            <li ng-if="isNotCommon(object)" class="list-group-item"> {{object.title}} </li>
           </div>
         </ul>
       </div>

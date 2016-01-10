@@ -9,18 +9,45 @@
         $scope.songs = [];
         for (var i = 0; i < $scope.users.length; i++) {
           $http.get("/api/songs/?user_id=" + $scope.users[i].id).then(function(songsResponse) {
-            // for (var i = 0; i < songsResponse.data.song_array.length; i ++) {
-            //   songsResponse.data.song_array[i].is_in_common = false;
-            //   // console.log(songsResponse.data.song_array[i]);
-            // }
             $scope.songs.push(songsResponse.data);
           });
         }
       });
     };
 
+    $scope.showRandomCommonSong = function() {
+
+    };
+
     $scope.showIndividualSongs = function() {
+      $scope.showCommonSongs();
       $scope.showIndividual = !$scope.showIndividual;
+      $scope.showCommon = false;
+    };
+
+    $scope.isCommon = function(object) {
+      if (object.isInCommon) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    $scope.isNotCommon = function(object) {
+      if (object.isInCommon) {
+        return false;
+      } else {
+        return true;
+      }
+    };
+
+    $scope.sortBy = function(style) {
+      console.log(style);
+      if (style === 'all') {
+        $scope.sortStyle = undefined;
+      } else {
+        $scope.sortStyle = String(style);
+      }
     };
 
     $scope.showCommonSongs = function() {
@@ -49,6 +76,7 @@
       }
       $scope.firstUserSongs = $scope.songs[0].song_array;
       $scope.showCommon = !$scope.showCommon;
+      $scope.showIndividual = false;
     };
 
     window.$scope = $scope;
