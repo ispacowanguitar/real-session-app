@@ -5,7 +5,9 @@ class Api::SongsController < ApplicationController
     if params[:user_id]
       user_id = params[:user_id]
       user = User.find(user_id)
-      songs = user.songs
+      songs = Hash.new
+      songs["user"] = User.find(params[:user_id])
+      songs["song_array"] = user.songs
     else
       songs = Song.all
     end
@@ -15,6 +17,13 @@ class Api::SongsController < ApplicationController
     end
 
       render :json => songs
+  end
+
+  def get_users
+    current_session = Session.find(params[:id])
+    session_users = current_session.users
+
+    render :json => session_users
   end
   
 

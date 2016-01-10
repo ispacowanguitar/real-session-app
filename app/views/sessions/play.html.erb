@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="sessionsCtrl" ng-init="setup(<%= @session_id %>)">
 
   <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style<span class="caret"></span></button>
@@ -11,9 +11,37 @@
      </ul>
      </div>
 
-  <h2>Songs: </h2>
-  <% @available_songs.each do |song| %>
-    <%= song.title %><br>
-  <% end %>
+     <button ng-click="showCommonSongs()">Show Common songs</button>
+     <button ng-click="showIndividualSongs()">Show All Users Songs</button>
+
+     <table ng-if="showCommon" class="table table-hover" width="100%">
+    <thead>
+      <tr style="color:red;">
+        <td width="30%">Title</td>
+        <td width="30%">Style</td>
+        <td width="30%">Composer</td>
+      </tr>
+    </thead>
+    <tbody ng-repeat="song in firstUserSongs | filter: {style: sortStyle} | filter: {title: sortTitle}">
+      <tr ng-if="song.isInCommon">
+        <td width="30%">{{song.title}}</td> 
+        <td width="30%">{{song.composer}}</dt>
+        <td width="30%">{{song.style}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+     <div ng-if="showIndividual" ng-repeat="array in songs">
+      <div class="col-lg-4">
+        <ul>
+          <div ng-repeat="user in array">
+            <li> {{user.first_name}} {{user.last_name}} </li>
+          </div>
+          <div ng-repeat="object in array.song_array">
+            <li> {{object.title}} </li>
+          </div>
+        </ul>
+      </div>
+     </div>
 
 </div>

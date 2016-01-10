@@ -38,11 +38,11 @@
         <td width="30%">Composer</td>
       </tr>
     </thead>
-    <tbody ng-repeat="song in songs | filter: {style: sortStyle} | filter: {title: sortTitle}">
+    <tbody ng-repeat="object in songs.song_array | filter: {style: sortStyle} | filter: {title: sortTitle}">
       <tr>
-        <td width="30%">{{song.title}}</td> 
-        <td width="30%">{{song.composer}}</dt>
-        <td width="30%">{{song.style}}</td>
+        <td width="30%">{{object.title}}</td> 
+        <td width="30%">{{object.composer}}</dt>
+        <td width="30%">{{object.style}}</td>
       </tr>
     </tbody>
   </table>
