@@ -16,13 +16,23 @@
     };
 
     $scope.showRandomCommonSong = function() {
-
+      $scope.showCommonSongs();
+      $scope.showCommon = false;
+      $scope.commonSongsArray = [];
+      for (var i = 0; i < $scope.firstUserSongs.length; i++) {
+        if ($scope.firstUserSongs[i].isInCommon) {
+          $scope.commonSongsArray.push($scope.firstUserSongs[i]);
+        }
+      }
+      $scope.randomSong = $scope.commonSongsArray[Math.floor(Math.random() * $scope.commonSongsArray.length)];
+      $scope.randSongShow = false;
     };
 
     $scope.showIndividualSongs = function() {
       $scope.showCommonSongs();
       $scope.showIndividual = !$scope.showIndividual;
       $scope.showCommon = false;
+      $scope.randSongShow = true;
     };
 
     $scope.isCommon = function(object) {

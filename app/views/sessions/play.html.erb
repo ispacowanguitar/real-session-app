@@ -1,9 +1,9 @@
 <div class="container" ng-controller="sessionsCtrl" ng-init="setup(<%= @session_id %>)">
 
     <div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style<span class="caret"></span></button>
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Style: {{sortStyle}}<span class="caret"></span></button>
     <ul class="dropdown-menu">
-        <li><a ng-click="sortBy('all')">All Songs </a></li>
+        <li><a ng-click="sortBy('all')">All Styles</a></li>
        <% @styles.each_key do |key| %>
         <li><a ng-click="sortBy('<%= key %>')"><%= key %></a></li>
        <% end %>
@@ -23,6 +23,11 @@
       <input ng-model="sortTitle" type="text" class="form-control" placeholder="Song Name filter">
     </div><!-- /input-group -->
     <br>
+
+    <h1 ng-hide="randSongShow"> {{randomSong.title}} </h1>
+    <h3 ng-hide="randSongShow"> {{randomSong.composer}} </h3>
+    <h3 ng-hide="randSongShow"> {{randomSong.style}} </h3>
+
 
      <table ng-if="showCommon" class="table table-hover" width="100%">
     <thead>
