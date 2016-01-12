@@ -13,6 +13,7 @@
  *= require theme/Theme-DarkAdmin:bootstrap:css:bootstrap
  *= require theme/Theme-DarkAdmin:css:local
  *= require theme/Theme-DarkAdmin:font-awesome:css:font-awesome
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
