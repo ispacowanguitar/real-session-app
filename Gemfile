@@ -26,6 +26,7 @@ gem 'seed_dump'
 gem 'devise'
 gem 'thematic'
 gem "font-awesome-rails"
+gem 'bootstrap_form'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
