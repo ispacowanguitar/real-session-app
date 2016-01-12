@@ -32,16 +32,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Real Session</a>
+                <a class="navbar-brand" href="index.html" style="font-size:50px;color:#3399ff;font-weight:bold;">Real Session</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
-                    <li class="selected"><a href="/songs"><i class="fa fa-bullseye"></i> Songs</a></li>
-                    <li><a href="/"><i class="fa fa-tasks"></i> Band Mates</a></li>
-                    <li><a href="/sessions/new">New Session</a></li>
-                    <li><a href="/sessions"><i class="fa fa-globe"></i> Calendar</a></li>
-                    <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
-                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li>
+                    <li><a href="/songs"><i class="fa fa-music"></i> Songs</a></li>
+                    <li><a href="/"><i class="fa fa-users"></i> Band Mates</a></li>
+                    <li><a href="/sessions/new"><i class="fa fa-calendar-plus-o"></i>New Session</a></li>
+                    <li><a href="/sessions"><i class="fa fa-calendar"></i> Calendar</a></li>
                 </ul>
 
 
@@ -57,12 +55,8 @@
                             </li>
                             <li class="divider"></li>
                             <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Some other link here???</span>
-                                </a>
+                                
                             </li>
-                            <li class="divider"></li>
                             <li><a href="/invitations">View invitations <span class="badge"><%=current_user.invitations.where("status_id = 2").count %></span></a></li>
                         </ul>
                     </li>
@@ -70,19 +64,12 @@
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.first_name if current_user%><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                            <li><a href="/songs"><i class="fa fa-music"></i> Repertoire</a></li>
                             <li class="divider"></li>
                             <li><%= link_to "Sign Out", "/users/sign_out", method: :delete unless !current_user %> </li>
 
                         </ul>
                         <% end %>
-                    </li>
-                    <li class="divider-vertical"></li>
-                    <li>
-                        <form class="navbar-search">
-                            <input type="text" placeholder="Search" class="form-control">
-                        </form>
                     </li>
                 </ul>
             </div>
