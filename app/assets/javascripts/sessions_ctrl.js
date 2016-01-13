@@ -60,6 +60,14 @@
       }
     };
 
+    $scope.playSong = function(inputSong) {
+      var title = inputSong.title.split(" ").join("%20");
+      $http.get("https://api.spotify.com/v1/search?query=" + title + "&type=track&limit=1").then(function(response) {
+        $scope.previewUrl = response.data["tracks"]["items"][0]["preview_url"];
+        window.open($scope.previewUrl);
+      });
+    };
+
     $scope.showCommonSongs = function() {
 
       var arrays = $scope.songs.map(songsObject => songsObject.song_array.map(song => song.title));
