@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require theme/Theme-DarkAdmin:bootstrap:js:bootstrap
-//= require theme/Theme-DarkAdmin:js:jquery-1.10.2.min
 //= require angular
 //= require app
 //= require_tree .
