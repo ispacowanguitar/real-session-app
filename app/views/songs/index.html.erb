@@ -39,8 +39,8 @@
       </tr>
     </thead>
     <tbody ng-repeat="object in songs.song_array | filter: {style: sortStyle} | filter: {title: sortTitle}">
-      <tr>
-        <td width="30%">{{object.title}}</td> 
+      <tr ng-click="playSong(object)">
+        <td width="30%">{{object.title}}</td>
         <td width="30%">{{object.composer}}</dt>
         <td width="30%">{{object.style}}</td>
       </tr>
@@ -48,4 +48,3 @@
   </table>
 
 </div>
-
