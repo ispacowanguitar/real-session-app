@@ -1,33 +1,60 @@
-<h1>Search for songs</h1>
 
-<%= form_tag '/songs/search', method: :get do %>
-  <p>
-    <%= text_field_tag :search, "search box" %>
-    <%= button_tag "Search" %>
-  </p>
-<% end %>
+<div class="container">
+  <div ng-controller="songsCtrl" ng-init="setup()">
+    <h1>Search for songs</h1>
 
-<%= form_tag '/songs', method: :post do %>
-  <%= button_tag "Add to repetoire" %>
-  <br></br>
+    <%= form_tag '/songs/search', method: :get do %>
+    <p>
+      <%= text_field_tag :search, "search box" %>
+      <%= button_tag "Search" %>
+    </p>
+    <% end %>
 
-  <table class="table table-hover" width="100%">
-    <thead>
-      <tr style="color:red;">
-        <th width="30%">Title</th>
-        <th width="30%">Style</th>
-        <th width="30%">Composer</th>
-      </tr>
-    </thead>
-  <% @songs.each do |song| %>
-  <tbody>
-    <tr>
-      <td width="30%"><%= check_box_tag "songs[]", song.id, checked = false, {} %>  <%= song.title %></td>
-      <td width="30%"><%= song.style %></td>
-      <td width="30%"><%= song.composer %></td>
-    </tr>
-  </tbody>
-  <% end %>
-  </table><br>
-<% end %>
+    <%= form_tag '/songs', method: :post do %>
+    <%= button_tag "Add to repetoire" %>
+    <br>
 
+    <table class="table table-hover" width="100%">
+      <thead>
+        <tr style="color:red;">
+          <th width="30%">Title</th>
+          <th width="30%">Style</th>
+          <th width="30%">Composer</th>
+        </tr>
+      </thead>
+      <% @songs.each do |song| %>
+      <tbody>
+        <tr>
+          <td width="30%"><%= check_box_tag "songs[]", song.id, checked = false, {} %>  <%= song.title %></td>
+          <td width="30%"><%= song.style %></td>
+          <td width="30%"><%= song.composer %></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table><br>
+    <% end %>
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> {{currentTitle}} </h4>
+          </div>
+          <div class="modal-body">
+            <p> {{currentComposer}} </p>
+            <audio id="audio" ng-src="{{previewUrl}}" controls>
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="modal-footer">
+            <button id="audioClose" ng-click="endSong()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

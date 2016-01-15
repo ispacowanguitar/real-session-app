@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/songs' => 'songs#user_songs_add'
   get '/songs/new' => 'songs#new'
   post '/songs' => 'songs#create'
-  get '/songs/:id' => 'songs#show'
+  get '/songs/users_search' => 'songs#users_search'
   delete '/songs/:id' => 'songs#destroy'
 
   get '/sessions' => 'sessions#index'
@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     get '/songs' => 'songs#get_songs'
     get '/user_id' => 'songs#find_user'
     get '/session_users/:id' => 'songs#get_users'
+    get '/search_songs' => 'songs#search_songs' 
   end
 end

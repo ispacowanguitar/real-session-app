@@ -1,0 +1,86 @@
+
+<div class="container">
+  <div ng-controller="songsCtrl" ng-init="setup()">
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h3>Hi <%= current_user.first_name %>. You can search for other users here, and see what songs they know!</h3>
+    </div>
+  </div>
+  <br>
+
+  <br>
+      <%= link_to "Search for more songs", '/songs/search' %>
+  <br>
+
+  <div class="row">
+  <div class="col-lg-12">
+    <div class="input-group">
+      <span class="input-group-btn">
+      </span>
+      <input style="color:black;" ng-model="usersSearch" type="text" class="form-control" placeholder="Song Name Search">
+      <br>
+      <button type="button" ng-Click="findUsers(usersSearch)">Search</button>
+
+    </div><!-- /input-group -->
+    <br>
+  
+  <table class="table table-hover" width="100%">
+    <thead>
+      <tr style="color:red;">
+        <td width="30%">Name</td>
+        <td width="30%"></td>
+        <td width="30%"></td>
+      </tr>
+    </thead>
+    <tbody ng-repeat="user in usersArray | filter: {style: sortStyle} | filter: {title: sortTitle}">
+      <tr ng-click="showSongs(user)">
+        <td width="30%">{{user.first_name}} {{user.last_name}}</td>
+        <td width="30%"></dt>
+        <td width="30%"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table ng-if="showUserSongs" class="table table-hover" width="100%">
+    <thead>
+      <tr style="color:red;">
+        <td width="30%">Title ({{totalUserSongs}})</td>
+        <td width="30%">Style</td>
+        <td width="30%">Composer</td>
+      </tr>
+    </thead>
+    <tbody ng-repeat="object in userSongs.song_array | filter: {style: sortStyle} | filter: {title: sortTitle}">
+      <tr ng-click="playSong(object)">
+        <td width="30%">{{object.title}}</td>
+        <td width="30%">{{object.composer}}</dt>
+        <td width="30%">{{object.style}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> {{currentTitle}} </h4>
+        </div>
+        <div class="modal-body">
+          <p> {{currentComposer}} </p>
+          <audio id="audio" ng-src="{{previewUrl}}" controls>
+          Your browser does not support the audio element.
+          </audio>
+        </div>
+        <div class="modal-footer">
+          <button id="audioClose" ng-click="endSong()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

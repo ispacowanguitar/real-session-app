@@ -45,4 +45,8 @@ class SongsController < ApplicationController
     end
     redirect_to '/songs'
   end
+
+  def users_search
+  end
+  
 end

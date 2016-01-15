@@ -1,24 +1,22 @@
-<h2>Sign up</h2>
+<h1>Real Session</h1>
+<h3>Sign Up</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
+  <div class="col-xs-7" class="field">
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
+  <div class="col-xs-7" class="field">
     <%= f.text_field :last_name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="col-xs-7" class="field">
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field">
+  <div class="col-xs-7" class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -26,12 +24,11 @@
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="col-xs-7" class="field">
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
+  <div class="col-xs-7" class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
