@@ -1,19 +1,18 @@
 <%= bootstrap_form_tag url: '/sessions/create', method: :post do %>
-  <div>
-    <%= label_tag :location, 'Location of session' %>
-    <%= text_field_tag "location", "Enter location here" %>
+  <div class="col-xs-7" class="form-group">
+    <label for="location">Location of session</label>
+    <input style="color:black;" class="form-control" type="text" name="location" id="location" value="Enter location here">
   </div>
-  <div>
-    <%= label_tag :description, 'Description of session' %>
-    <%= text_field_tag "description", "description" %>
+  <div class="col-xs-7" class="form-group">
+    <label for="description">Description of session</label>
+    <input style="color:black;" class="form-control" type="text" name="description" id="description" value="description">
   </div>
-  <div>
-    <%= label_tag :datetime, 'Enter the date of the session' %>
-    <%= datetime_local_field :session_datetime, "datetime" %>
+  <div class="col-xs-7" class="form-group">
+    <label for="datetime">Enter the date and time of the session</label>
+    <input class="btn btn-default" type="datetime-local" name="session_datetime[datetime]" id="session_datetime_datetime">
   </div>
-  <div>
-    <%= label_tag :button, 'Click the button to proceed' %>
-    <%= button_tag "Find Bandmates" %>
+  <div class="col-xs-7" class="form-group">
+    <button class="btn btn-default" name="button" type="submit">Find Bandmates</button>
   </div>
 <% end %>
 

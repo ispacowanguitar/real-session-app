@@ -3,7 +3,7 @@
 <% @sessions.each do |session| %>
   <h5>Location: <%= session.location %></h5>
   <h5>Description: <%= session.description %>
-  <h5>Time: <%= session.time %></h5>
+  <h5>Time: <%= session.time.strftime("%A, %B %d %H:%M %p") %></h5>
   <ul>
     <% session.users.each do |user| %>
       <li><%= user.first_name %> <%= user.last_name %></li>

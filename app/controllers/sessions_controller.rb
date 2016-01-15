@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def index
-    @sessions = current_user.sessions.all
+    @sessions = current_user.sessions.order(:time)
   end
 
   def play
