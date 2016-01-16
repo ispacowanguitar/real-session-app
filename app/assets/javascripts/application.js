@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require theme/Theme-DarkAdmin:bootstrap:js:bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
 //= require angular
 //= require app
 //= require_tree .

@@ -9,11 +9,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    datetime_hash = params[:session_datetime]
+    # datetime_hash = params[:session_datetime]
+    date = DateTime.strptime(params[:session_date][:datetime], "%m/%d/%Y %H:%M %P").to_time
+
     session = Session.create(
       location: params[:location],
       description: params[:description],
-      time: datetime_hash[:datetime]
+      time: date
       )
     redirect_to "/invitations/#{session.id}/search_users"
   end

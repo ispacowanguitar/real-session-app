@@ -9,10 +9,27 @@
   </div>
   <div class="col-xs-7" class="form-group">
     <label for="datetime">Enter the date and time of the session</label>
-    <input class="btn btn-default" type="datetime-local" name="session_datetime[datetime]" id="session_datetime_datetime">
+
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input style="color:black;" type='text' class="form-control" name="session_date" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+
   </div>
   <div class="col-xs-7" class="form-group">
     <button class="btn btn-default" name="button" type="submit">Find Bandmates</button>
   </div>
 <% end %>
-
