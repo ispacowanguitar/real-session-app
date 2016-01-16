@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # datetime_hash = params[:session_datetime]
-    date = DateTime.strptime(params[:session_date][:datetime], "%m/%d/%Y %H:%M %P").to_time
+    date = DateTime.strptime(params[:session_date], "%m/%d/%Y %H:%M %P").to_time
 
     session = Session.create(
       location: params[:location],
