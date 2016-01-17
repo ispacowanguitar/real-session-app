@@ -9,7 +9,7 @@
 
 <% if @users %>
   <%= form_tag "/invitations/#{@session.id}", method: :post do %>
-    <%= button_tag "Invite to Jam Session" %>
+    <%= button_tag "Add to invitations list" %>
     <br></br>
     <% @users.each do |user| %>
       <div>

@@ -40,6 +40,8 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (8.2.1)
@@ -81,6 +83,8 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
+    momentjs-rails (2.11.0)
+      railties (>= 3.1)
     multi_json (1.11.2)
     mysql2 (0.3.20)
     nokogiri (1.6.7)
@@ -159,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap3-datetimepicker-rails (~> 4.17.37)
   bootstrap_form
   byebug
   coffee-rails (~> 4.1.0)
@@ -166,6 +171,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
+  momentjs-rails (>= 2.9.0)
   mysql2 (~> 0.3.20)
   rails (= 4.2.4)
   sass-rails (~> 5.0)
