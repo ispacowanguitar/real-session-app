@@ -1,12 +1,18 @@
 <div class ="container">
   <h4>You have <%= @invitations.length %> invitations</h4>
 
+    <div class="row">
   <% @invitations.each do |invitation| %>
-    <p>Invitation from: <%= User.find(invitation.sender_id).first_name %> <%= User.find(invitation.sender_id).last_name %></p>
-    <p>To play at: <%= invitation.session.location %></p>
-    <p>Time of session: <%= invitation.session.time %></p>
-    <%= link_to "Accept   ", "/invitations/#{invitation.id}/accept/response", method: :post %>
-    <%= link_to "Decline   ", "invitations/#{invitation.id}/decline/response", method: :post %>
+    <div class="col-lg-4">
+      <div class="well">
+        <p>Invitation from: <%= User.find(invitation.sender_id).first_name %> <%= User.find(invitation.sender_id).last_name %></p>
+        <p>To play at: <%= invitation.session.location %></p>
+        <p>Time of session: <%= invitation.session.time %></p>
+        <%= link_to "Accept   ", "/invitations/#{invitation.id}/accept/response", method: :post %>
+        <%= link_to "Decline   ", "invitations/#{invitation.id}/decline/response", method: :post %>
+      </div>
+    </div>
   <% end %> 
+    </div>
 </div>
 
