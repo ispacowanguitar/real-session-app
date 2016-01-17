@@ -2,7 +2,7 @@
 
 (function() {
   "use strict";
-  angular.module("app").controller("sessionsCtrl", function($scope, $http) {
+  angular.module("app").controller("sessionsCtrl", function($scope, $http, $sce) {
     $scope.setup = function(sessionId) {
       $http.get("/api/session_users/" + sessionId).then(function(usersResponse) {
         $scope.users = usersResponse.data;
@@ -60,15 +60,6 @@
       }
     };
 
-    $scope.playSong = function(inputSong) {
-      var title = inputSong.title.split(" ").join("%20");
-      $http.get("https://api.spotify.com/v1/search?query=" + title + "&type=track&limit=1").then(function(response) {
-        $scope.previewUrl = response.data["tracks"]["items"][0]["preview_url"];
-        $('#myModal').modal('show');
-        window.open($scope.previewUrl);
-      });
-    };
-
     $scope.showCommonSongs = function() {
 
       var arrays = $scope.songs.map(songsObject => songsObject.song_array.map(song => song.title));
@@ -96,6 +87,17 @@
       $scope.firstUserSongs = $scope.songs[0].song_array;
       $scope.showCommon = !$scope.showCommon;
       $scope.showIndividual = false;
+    };
+
+    $scope.playSong = function(inputSong) {
+      console.log(inputSong);
+      var title = inputSong.title.split(" ").join("%20");
+      $http.get("https://api.spotify.com/v1/search?query=" + title + "&type=track&limit=1").then(function(response) {
+        $scope.previewUrl = $sce.trustAsResourceUrl(response.data["tracks"]["items"][0]["preview_url"]);
+      });
+      $scope.currentTitle = inputSong.title;
+      $scope.currentComposer = inputSong.composer;
+      $("#myModal").modal('show');
     };
 
     window.$scope = $scope;

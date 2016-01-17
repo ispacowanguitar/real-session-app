@@ -16,15 +16,17 @@ class InvitationsController < ApplicationController
     @invited_users << current_user
     @session = Session.find(params[:id])
 
-    params[:users].each do |member_id|
-      unless Invitation.find_by(session_id: params[:id], sender_id: current_user.id, user_id: member_id) || (member_id.to_i == current_user.id)
-        Invitation.create(
-          session_id: params[:id],
-          sender_id: current_user.id,
-          user_id: member_id,
-          status_id: 1
-          )
-      end
+    if params[:users]
+      params[:users].each do |member_id|
+        unless Invitation.find_by(session_id: params[:id], sender_id: current_user.id, user_id: member_id) || (member_id.to_i == current_user.id)
+          Invitation.create(
+            session_id: params[:id],
+            sender_id: current_user.id,
+            user_id: member_id,
+            status_id: 1
+            )
+        end
+    end
 
 
 
@@ -53,6 +55,7 @@ class InvitationsController < ApplicationController
       invitation.update(status_id: 2)
     end
     redirect_to "/sessions/#{params[:id]}/play"
+    flash[:success] = "Your invitations have been sent!"
   end
 
   def index
