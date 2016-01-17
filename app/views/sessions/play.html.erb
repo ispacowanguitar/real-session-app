@@ -24,13 +24,11 @@
     </div><!-- /input-group -->
     <br>
 
-    <div >
-        <div class="col-lg-4 row well"> 
-          <h1 style="color:#2a9fd6;" ng-hide="randSongShow"> {{randomSong.title}} </h1>
-          <h3 style="color:#2a9fd6;" ng-hide="randSongShow"> {{randomSong.composer}} </h3>
-          <h3 style="color:#2a9fd6;" ng-hide="randSongShow"> {{randomSong.style}} </h3>
+        <div ng-show="randSongShow" class="col-lg-4 row well"> 
+          <h1 style="color:#2a9fd6;"> {{randomSong.title}} </h1><hr>
+          <h3 style="color:#2a9fd6;"> Composer: {{randSongComposer}} </h3>
+          <h3 style="color:#2a9fd6;"> Style: {{randomSong.style}} </h3>
         </div>
-    </div>
 
 
      <table ng-if="showCommon" class="table table-hover" width="100%">

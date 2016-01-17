@@ -25,14 +25,15 @@
         }
       }
       $scope.randomSong = $scope.commonSongsArray[Math.floor(Math.random() * $scope.commonSongsArray.length)];
-      $scope.randSongShow = false;
+      $scope.randSongComposer = $scope.randomSong.composer.replace(/([A-Z])/g, ' $1').trim();
+      $scope.randSongShow = true;
     };
 
     $scope.showIndividualSongs = function() {
       $scope.showCommonSongs();
       $scope.showIndividual = !$scope.showIndividual;
       $scope.showCommon = false;
-      $scope.randSongShow = true;
+      $scope.randSongShow = false;
     };
 
     $scope.isCommon = function(object) {
@@ -63,13 +64,11 @@
     $scope.showCommonSongs = function() {
 
       var arrays = $scope.songs.map(songsObject => songsObject.song_array.map(song => song.title));
-      console.log(arrays);
       var commonSongTitles = arrays.shift().filter(function(v) {
         return arrays.every(function(a) {
           return a.indexOf(v) !== -1;
         });
       });
-      console.log(commonSongTitles);
 
       //loop through all songs and flag as either common or not common
       for (var j = 0; j < commonSongTitles.length; j++) {
