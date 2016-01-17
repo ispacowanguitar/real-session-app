@@ -51,11 +51,18 @@ class InvitationsController < ApplicationController
     invitations = []
     invitations = Invitation.where("session_id = #{params[:id]}")
 
+
+    invited_names = []
     invitations.each do |invitation|
       invitation.update(status_id: 2)
+      invited_names << "#{invitation.user.first_name} #{invitation.user.last_name}"
     end
-    redirect_to "/sessions/#{params[:id]}/play"
-    flash[:success] = "Your invitations have been sent!"
+
+    invited_names.insert(invited_names.length - 1, " and")
+    invited_names = invited_names.join(", ")
+
+    flash[:success] = "Invitations successfully sent to #{invited_names}!"
+    redirect_to "/sessions"
   end
 
   def index

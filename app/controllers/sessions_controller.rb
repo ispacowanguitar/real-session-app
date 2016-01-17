@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
 
   def index
     @sessions = current_user.sessions.order(:time)
+    @pending_invitations = Invitation.where("status_id = 2")
   end
 
   def play

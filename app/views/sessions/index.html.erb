@@ -5,10 +5,17 @@
   <h5>Description: <%= session.description %>
   <h5>Time: <%= session.time.strftime("%A, %B %d %H:%M %p") %></h5>
   <ul>
+
     <% session.users.each do |user| %>
-      <li><%= user.first_name %> <%= user.last_name %></li>
+      <li><%= user.first_name %> <%= user.last_name %> <strong style="color:green;">   accepted</strong></li>
     <% end %>
+
+      <% @pending_invitations.each do |pending_invitation| %>
+        <% if pending_invitation.session_id == session.id %>
+          <li><%= pending_invitation.user.first_name %> <%= pending_invitation.user.last_name %><strong style="color:yellow;">   pending</strong></li>
+        <% end %>
+      <% end %>
   </ul>
-  <%= link_to "Generate songs", "sessions/#{session.id}/play" %>
+      <%= link_to "Generate songs", "sessions/#{session.id}/play" %>
   <hr>
 <% end %>
