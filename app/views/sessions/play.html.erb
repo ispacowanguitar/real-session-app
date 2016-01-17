@@ -24,7 +24,7 @@
     </div><!-- /input-group -->
     <br>
 
-        <div ng-show="randSongShow" class="col-lg-4 row well"> 
+        <div ng-click="playSong(randomSong)" ng-show="randSongShow" class="col-lg-4 row well"> 
           <h1 style="color:#2a9fd6;"> {{randomSong.title}} </h1><hr>
           <h3 style="color:#2a9fd6;"> Composer: {{randSongComposer}} </h3>
           <h3 style="color:#2a9fd6;"> Style: {{randomSong.style}} </h3>
