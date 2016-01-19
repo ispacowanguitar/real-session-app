@@ -17,6 +17,7 @@
 
     $scope.showRandomCommonSong = function() {
       $scope.showCommonSongs();
+      $scope.shameShow = false;
       $scope.showCommon = false;
       $scope.commonSongsArray = [];
       for (var i = 0; i < $scope.firstUserSongs.length; i++) {
@@ -87,6 +88,38 @@
       $scope.firstUserSongs = $scope.songs[0].song_array;
       $scope.showCommon = !$scope.showCommon;
       $scope.showIndividual = false;
+    };
+
+    $scope.shame = function(input) {
+      if (input === "shame me please!") {
+        $http.get("/api/user_id").then(function(response) {
+          var userId = response.data.id;
+          console.log(userId);
+          $scope.othersSongs = [];
+          $scope.currentUserSongs = [];
+          for (var i = 0; i < $scope.songs.length; i++) {
+            if ($scope.songs[i].user.id !== userId) {
+              $scope.othersSongs.push($scope.songs[i]);
+            } else {
+              $scope.currentUserSongs.push($scope.songs[i]);
+            }
+          }
+          var arrays = $scope.othersSongs.map(songsObject => songsObject.song_array.map(song => song.title));
+          var commonSongTitles = arrays.shift().filter(function(v) {
+            return arrays.every(function(a) {
+              return a.indexOf(v) !== -1;
+            });
+          });
+          var userTitles = $scope.currentUserSongs.map(songsObject => songsObject.song_array.map(song => song.title));
+          $scope.shameSongTitles = [];
+          for (var j = 0; j < commonSongTitles.length; j++) {
+            if (userTitles[0].indexOf(commonSongTitles[j]) === -1) {
+              $scope.shameSongTitles.push(commonSongTitles[j]);
+            }
+          }
+        });
+        $scope.shameShow = true;
+      }
     };
 
     $scope.playSong = function(inputSong) {
