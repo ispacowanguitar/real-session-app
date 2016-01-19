@@ -43,11 +43,13 @@ class InvitationsController < ApplicationController
 
   def send_invitations
     session_id = params[:id]
-    UserSession.create(
-      user_id: current_user.id,
-      session_id: session_id,
-      admin: true
-      )
+    unless UserSession.find_by(user_id: current_user.id, session_id: session_id)
+      UserSession.create(
+        user_id: current_user.id,
+        session_id: session_id,
+        admin: true
+        )
+    end
     invitations = []
     invitations = Invitation.where("session_id = #{params[:id]}")
 
@@ -55,7 +57,7 @@ class InvitationsController < ApplicationController
     invited_names = []
     invitations.each do |invitation|
       invitation.update(status_id: 2)
-      invited_names << "#{invitation.user.first_name} #{invitation.user.last_name}"
+      invited_names << "#{invitation.user.full_name}"
     end
 
     invited_names.insert(invited_names.length - 1, " and")
@@ -80,13 +82,17 @@ class InvitationsController < ApplicationController
 
     if params[:response] == "accept"
       invitation.update(status_id: 4)
-      UserSession.create(
-        user_id: current_user.id,
-        session_id: invitation.session.id,
-        admin: false
-        )
+      unless UserSession.find_by(user_id: current_user.id, session_id: invitation.session.id)
+        UserSession.create(
+          user_id: current_user.id,
+          session_id: invitation.session.id,
+          admin: false
+          )
+      end
+      flash[:success] = "You have accepted the invitation to play with #{User.find(invitation.sender_id).full_name} at #{invitation.session.location}"
     elsif params[:response] == "decline"
       invitation.update(status_id: 3)
+      flash[:info] = "You have declined this invitation"
     end
 
     redirect_to "/invitations"

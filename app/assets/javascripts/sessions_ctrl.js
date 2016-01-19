@@ -83,6 +83,7 @@
           }
         }
       }
+      $scope.commonSongsLength = commonSongTitles.length;
       $scope.firstUserSongs = $scope.songs[0].song_array;
       $scope.showCommon = !$scope.showCommon;
       $scope.showIndividual = false;
@@ -93,10 +94,19 @@
       var title = inputSong.title.split(" ").join("%20");
       $http.get("https://api.spotify.com/v1/search?query=" + title + "&type=track&limit=1").then(function(response) {
         $scope.previewUrl = $sce.trustAsResourceUrl(response.data["tracks"]["items"][0]["preview_url"]);
+        $scope.albumImage = $sce.trustAsResourceUrl(response.data["tracks"]["items"][0]["album"]["images"][0]["url"]);
       });
       $scope.currentTitle = inputSong.title;
       $scope.currentComposer = inputSong.composer;
       $("#myModal").modal('show');
+    };
+
+    document.getElementById('audioClose').onclick = function() {
+      var sounds = document.getElementsByTagName('audio');
+      for (var i = 0; i < sounds.length; i++) {
+        sounds[i].pause();
+        console.log("audio close function");
+      }
     };
 
     window.$scope = $scope;

@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def timeout_in
       1.day
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
