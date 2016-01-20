@@ -9,16 +9,15 @@ Rails.application.routes.draw do
   get '/songs/new' => 'songs#new'
   post '/songs' => 'songs#create'
   get '/songs/users_search' => 'songs#users_search'
+  get '/songs/stats' => 'songs#stats'
   delete '/songs/:id' => 'songs#destroy'
 
   get '/sessions' => 'sessions#index'
   get '/sessions/new' => 'sessions#new'
   post '/sessions/create' => 'sessions#create'
   post '/sessions/:id/invite' => 'sessions#invite'
-  # post '/sessions/:id/send_invitations' => 'sessions#send_invitations'
   get '/sessions/:id/play' => 'sessions#play'
   get '/sessions/:id/play/:style' => 'sessions#play'
-  # get '/sessions/invitations' => 'sessions#invitations'
 
   get '/invitations' => 'invitations#index'
   get '/invitations/:id/search_users' => 'invitations#search_users'
