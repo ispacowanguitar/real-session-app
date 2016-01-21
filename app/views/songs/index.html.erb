@@ -19,7 +19,8 @@
     </ul>
   </div>
   <br>
-      <%= link_to "Search for more songs", '/songs/search' %>
+      <%= link_to "Search for more songs", '/songs/search' %><br>
+      <%= link_to"Create your own song", "/songs/new" %>
   <br>
 
   <div class="row">
@@ -42,8 +43,8 @@
     <tbody ng-repeat="object in songs.song_array | filter: {style: sortStyle} | filter: {title: sortTitle}">
       <tr>
         <td ng-click="playSong(object)" width="30%">{{object.title}}</td>
-        <td width="30%">{{object.composer}}</dt>
-        <td width="15%">{{object.style}}</td>
+        <td width="30%">{{object.style}}</dt>
+        <td width="15%">{{object.composer}}</td>
         <td ng-click="delete(object)" width="15%"><a href="#">Remove song</a></td>
       </tr>
     </tbody>

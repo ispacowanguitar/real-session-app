@@ -54,8 +54,8 @@
     <tbody ng-repeat="song in firstUserSongs | filter: {style: sortStyle} | filter: {title: sortTitle}">
       <tr ng-click="playSong(song)" ng-if="song.isInCommon">
         <td width="30%">{{song.title}}</td> 
-        <td width="30%">{{song.composer}}</dt>
-        <td width="30%">{{song.style}}</td>
+        <td width="30%">{{song.style}}</dt>
+        <td width="30%">{{song.composer}}</td>
       </tr>
     </tbody>
   </table>
