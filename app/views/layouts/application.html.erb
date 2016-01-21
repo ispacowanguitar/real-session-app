@@ -8,6 +8,8 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 
+
+    <link href='https://fonts.googleapis.com/css?family=Elsie' rel='stylesheet' type='text/css'>
     <!-- you need to include the shieldui css and js assets in order for the charts to work -->
     <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
     <link id="gridcss" rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/dark-bootstrap/all.min.css" />
@@ -25,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="font-family:tahoma; Text;font-size:45px;color:#2a9fd6;padding-top:-5px;">Real Session</a>
+                <a class="navbar-brand" href="index.html" style="font-family:Elsie; Text;font-size:55px;color:#2a9fd6;padding-top:-5px;font-variant:small-caps"><i id="header_icon" class="fa fa-volume-up"></i>Real Session</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
@@ -70,17 +72,17 @@
 
 
         <div id="page-wrapper">
-        <div ng-app="app">
-        <div class="container">
-            <% flash.each do |name, message| %>
-                <div class="alert alert-<%= name %> alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= message %></p>
+            <div ng-app="app">
+                <div class="container">
+                    <% flash.each do |name, message| %>
+                        <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p><%= message %></p>
+                        </div>
+                    <% end %>
                 </div>
-            <% end %>
+                <%= yield %>
+            </div>
         </div>
-            <%= yield %>
-        </div>
-
     </script>
 </body>
 </html>

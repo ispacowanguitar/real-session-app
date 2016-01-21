@@ -22,14 +22,14 @@
     };
 
     $scope.playSong = function(inputSong) {
-      var title = inputSong.title.split(" ").join("%20");
+      var title = inputSong.title;
       $http.get("https://api.spotify.com/v1/search?query=" + title + "&type=track&limit=1").then(function(response) {
         $scope.previewUrl = $sce.trustAsResourceUrl(response.data["tracks"]["items"][0]["preview_url"]);
         $scope.albumImage = $sce.trustAsResourceUrl(response.data["tracks"]["items"][0]["album"]["images"][0]["url"]);
       });
       $scope.currentTitle = inputSong.title;
       $scope.currentComposer = inputSong.composer;
-      $("#myModal").modal('show');
+      angular.element("#myModal").appendTo('body').modal('show');
     };
 
     document.getElementById('audioClose').onclick = function() {
@@ -52,6 +52,15 @@
         $scope.userSongs = response.data;
         $scope.totalUserSongs = $scope.userSongs["song_array"].length;
       });
+    };
+
+    $scope.delete = function(songObject) {
+      var songId = songObject.id;
+      $http.get("api/remove_song/" + songId).then(function(response) {
+        console.log(response);
+      });
+      var songIndex = $scope.songs.song_array.indexOf(songObject);
+      $scope.songs.song_array.splice(songIndex, 1);
     };
 
     window.$scope = $scope;

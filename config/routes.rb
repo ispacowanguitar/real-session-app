@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get '/songs' => 'songs#get_songs'
     get '/user_id' => 'songs#find_user'
     get '/session_users/:id' => 'songs#get_users'
-    get '/search_songs' => 'songs#search_songs' 
+    get '/search_songs' => 'songs#search_songs'
+    get '/remove_song/:id' => 'songs#remove' 
   end
 end

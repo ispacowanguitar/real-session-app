@@ -1,5 +1,5 @@
 class Api::SongsController < ApplicationController
-  
+
   def get_songs
 
     if params[:user_id]
@@ -58,5 +58,10 @@ class Api::SongsController < ApplicationController
     end
   end
 
+  def remove
+    user_song = UserSong.find_by(user_id: current_user.id, song_id: params[:id])
+    user_song.destroy
+    render :json => current_user
+  end
 
 end

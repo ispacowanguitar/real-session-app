@@ -3,8 +3,9 @@
   <div ng-controller="songsCtrl" ng-init="setup()">
 
   <div class="row">
-    <div class="col-lg-6">
-      <h3>Hi <%= current_user.first_name %>, you have <%= @songs.count %> <%=  %> songs in your repetoire </h3>
+    <div class="col-lg-12">
+      <h1>Hi <%= current_user.first_name %>, you have <%= @songs.count %> <%=  %> songs in your repetoire </h1>
+      <p></p>
     </div>
   </div>
   <br>
@@ -26,7 +27,7 @@
     <div class="input-group">
       <span class="input-group-btn">
       </span>
-      <input ng-model="sortTitle" type="text" class="form-control" placeholder="Song Name Search">
+      <input style="color:black;" ng-model="sortTitle" type="text" class="form-control" placeholder="Song Name Search">
     </div><!-- /input-group -->
     <br>
   
@@ -39,19 +40,22 @@
       </tr>
     </thead>
     <tbody ng-repeat="object in songs.song_array | filter: {style: sortStyle} | filter: {title: sortTitle}">
-      <tr ng-click="playSong(object)">
-        <td width="30%">{{object.title}}</td>
+      <tr>
+        <td ng-click="playSong(object)" width="30%">{{object.title}}</td>
         <td width="30%">{{object.composer}}</dt>
-        <td width="30%">{{object.style}}</td>
+        <td width="15%">{{object.style}}</td>
+        <td ng-click="delete(object)" width="15%"><a href="#">Remove song</a></td>
       </tr>
     </tbody>
   </table>
 
+  </div>
+</div>
   <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div style="width:350px;" class="modal-content">
+      <div style="width:350px" class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title"> {{currentTitle}} </h4>
@@ -69,6 +73,4 @@
       </div>
 
     </div>
-  </div>
-</div>
 
