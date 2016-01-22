@@ -28,7 +28,6 @@ class SongsController < ApplicationController
       title: params[:title],
       style: params[:style],
       composer: params[:composer],
-      tempo: params[:tempo]
       )
     redirect_to '/songs'
   end

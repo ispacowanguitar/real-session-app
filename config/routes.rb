@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/songs/search' => 'songs#search'
   post '/songs' => 'songs#user_songs_add'
   get '/songs/new' => 'songs#new'
-  post '/songs' => 'songs#create'
+  post '/songs/create' => 'songs#create'
   get '/songs/users_search' => 'songs#users_search'
   get '/songs/stats' => 'songs#stats'
   delete '/songs/:id' => 'songs#destroy'

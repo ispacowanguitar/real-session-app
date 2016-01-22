@@ -1,20 +1,20 @@
 <h1>add songs to your repetoire</h1>
 
-<%= form_tag '/songs', method: :post do %>
-<div>
-  <%= text_field_tag :title, "type the title" %>
+<%= bootstrap_form_tag url: '/songs/create', method: :post do %>
+<div class="col-xs-7" class="form-group">
+  <label for="Title">Title of song</label>
+  <input style="color:black;" class="form-control" type="text" name="title" id="location" value="Enter title here">
 </div>
-<div>
-  <%= text_field_tag :style, "type the style" %>
+<div class="col-xs-7" class="form-group">
+  <label for="style">style of song</label>
+  <input style="color:black;" class="form-control" type="text" name="style" id="location" value="Enter style here">
 </div>
-<div>
-  <%= text_field_tag :composer, "type the composer" %>
+<div class="col-xs-7" class="form-group">
+  <label for="composer">composer of song</label>
+  <input style="color:black;" class="form-control" type="text" name="composer" id="location" value="Enter composer here">
 </div>
-<div>
-  <%= text_field_tag :tempo, "type the tempo" %><br><br>
-</div>
-<div>
-  <%= button_tag "Create the Song" %>
+<div class="col-xs-7" class="form-group">
+  <button class="btn btn-default" name="button" type="submit">Create Song</button>
 </div>
 <% end %>
 
